@@ -66,3 +66,19 @@ pip install -r requirements.txt
 Manually download and install Moses and other dependencies (you'll need to look inside scripts/download_install_packages.sh to replicate its steps).
 
 Run the training logic by manually executing the code inside train.sh, or porting it to a Python script or notebook.
+
+# Switch between pre-norm and post-norm
+
+To switch between pre-norm and post-norm, modify the layer_norm field in the encoder/decoder sections of the YAML config: layer_norm: "pre" 
+
+Change num_threads for CPU training (macOS or non-GPU machines).
+
+# Visualizing
+
+Extracts validation perplexity (every 500 steps) from log files:
+
+    ./scripts/extract_validation_ppl.py
+
+Plots a line chart based on extracted perplexities for comparison between Baseline, Prenorm, and Postnorm models:
+
+    ./scripts/plot_validation_ppl_chart.py
